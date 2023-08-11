@@ -1,0 +1,19 @@
+{% for experience in experiences %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3 class="h3">{{ experience.job_title }}</h3>
+                <p>{{ experience.company }}</p>
+                <small>
+                    {{ experience.start_date }} -
+                    {% if experience.end_date %}
+                        {{ experience.end_date }}
+                    {% else %}
+                        Present
+                    {% endif %}
+                </small>
+                <p class="my-3">{{ experience.description|linebreaksbr }}</p>
+            </div>
+        </div>
+    </div>
+{% endfor %}

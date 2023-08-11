@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+    <script async src="https://www.google.com/recaptcha/api.js"></script>
+    <title>Nikolai Gordienko</title>
+</head>
+<style>
+  .ready {
+    color: green;
+  }
+  .not-ready {
+    color: red;
+  }
+  .accordion-body {
+    transition: height 1,5s ease-in-out;
+  }
+</style>
+<body class="container bg-light">
+{% load static %}
+{% include 'bar.html' %}
+  <div class="container">
+    {% if user.is_authenticated %}
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'index' %}">My Site</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'user:user' %}">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'experience:experience_list' %}">Experience</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'education:education_list' %}">Education</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'skills:skill_list' %}">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'projects:project_list' %}">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Logout ({{ user.username }})</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    {% else %}
+    {% endif %}
+    {% block content %}
+    {% endblock %}
+    </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src="{% static 'script.js' %}"></script>
+</body>
+</html>
